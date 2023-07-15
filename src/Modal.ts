@@ -155,14 +155,28 @@ export class EmotionPickerModal extends Modal {
 		// TODO: various options like [[text]], #text
 		console.log(this.plugin.settings);
 		if (this.state.capitalize) text = this.capitalize(text);
-		if (this.state.addAsTag) text = `#${text}`;
+		if (this.state.addAsTag) text = `#${text.split(' ')[0]}`;
 		if (this.state.addAsLink) text = `[[${text}]]`;
-		if (this.state.useCommaInSeparator) text = text + ", ";
-		text = " " + text;
+		if (this.state.useCommaInSeparator) text = text + ", "; else text = text + " ";
 		return text;
 	}
 
 	capitalize(text: string): string {
 		return text.charAt(0).toUpperCase() + text.slice(1);
 	}
+
+/*
+    console.log(this.plugin.settings);
+    if (this.state.capitalize)
+      text = this.capitalize(text);
+    if (this.state.addAsTag)
+      text = `#${text.split(' ')[0]}`;
+    if (this.state.addAsLink)
+      text = `[[${text}]]`;
+    if (this.state.useCommaInSeparator)
+      text = text + ", ";
+    else
+      text = text + " ";
+    return text;
+*/
 }
